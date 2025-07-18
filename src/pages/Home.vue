@@ -1,7 +1,43 @@
+<script lang="ts" setup>
+import HomeComp1 from '../components/layout/HomeComp1.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+
+let reached = ref(false);
+const wrapper = ref<HTMLElement | null>(null);
+
+const handleWindowScroll = () => {
+    if (!wrapper.value) return;
+
+    const rect = wrapper.value.getBoundingClientRect();
+
+    const isAtTop = rect.top >= 0;
+    const isAtBottom = rect.bottom <= window.innerHeight;
+
+    if (isAtBottom) {
+        console.log("Wrapper bottom reached viewport");
+        reached.value = true;
+    } else if (isAtTop) {
+        console.log("Wrapper top reached viewport");
+        reached.value = false;
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleWindowScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleWindowScroll);
+});
+
+</script>
 <template>
-    <div>
-        <h1>Welcome to the Home Page</h1>
-        <p>This is a simple Vue.js application.</p>
-        <router-link to="/about">Go to About Page</router-link>
+    <div ref="wrapper" class="wrapper">
+        <div :class="reached ? 'third anim-on' : 'third anim-off'">
+        </div>
+        <HomeComp1 :reached />
     </div>
+
 </template>
+
+<style scoped></style>
