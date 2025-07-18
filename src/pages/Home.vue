@@ -1,77 +1,43 @@
 <script lang="ts" setup>
-  import phone from "../assets/phone.png";
-  import laptop from "../assets/laptop.png";
-  import camera from "../assets/camera.png";
-  import headset from "../assets/headset.png";
-  import tv from "../assets/TV.png";
+import HomeComp1 from '../components/layout/HomeComp1.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+
+let reached = ref(false);
+const wrapper = ref<HTMLElement | null>(null);
+
+const handleWindowScroll = () => {
+    if (!wrapper.value) return;
+
+    const rect = wrapper.value.getBoundingClientRect();
+
+    const isAtTop = rect.top >= 0;
+    const isAtBottom = rect.bottom <= window.innerHeight;
+
+    if (isAtBottom) {
+        console.log("Wrapper bottom reached viewport");
+        reached.value = true;
+    } else if (isAtTop) {
+        console.log("Wrapper top reached viewport");
+        reached.value = false;
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleWindowScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleWindowScroll);
+});
+
 </script>
 <template>
-    <div class="wrapper">
-        <div class="third">
-             <div class="container">
-                  <img class="image" :src="phone" alt="phone" />
-                  <img class="image" :src="phone" alt="phone" />
-                  <img class="image" :src="phone" alt="phone" />
-             </div>
+    <div ref="wrapper" class="wrapper">
+        <div :class="reached ? 'third anim-on' : 'third anim-off'">
         </div>
-        <div class="second"></div>
-        <div class="first"></div>
+        <HomeComp1 :reached />
     </div>
+
 </template>
 
-
-<style scoped>
-.wrapper {
-    background-color: brown;
-    width: 100%;
-    min-height: 75%;
-    margin-top: 6rem;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
-.third {
-    background-color: blue;
-    width: 95%;
-    height: 70vh;
-    border-radius: 40px;
-    display: flex;
-    justify-content: end;
-}
-.container{
-    height: 200px;
-    width: 50px;
-    background-color: orange;
-    margin-right: 1rem;
-    margin-top: 4rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-.image{
-    width: 2.5rem;
-    height: 2.5rem;
-}
-
-.second {
-    position: absolute;
-    background-color: yellow;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    bottom: -95px;
-}
-
-.first {
-    position: absolute;
-    background-color: green;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    bottom: -55px;
-}
-</style>
+<style scoped></style>
