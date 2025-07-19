@@ -5,8 +5,16 @@ import Navbar from './components/layout/Navbar.vue'
 <template>
   <div>
     <Navbar />
-    <div style="margin-top: 90px;">
+    <div style="margin-top: 140px;">
       <router-view />
     </div>
   </div>
 </template>
+
+<style>
+html,
+body {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+</style>

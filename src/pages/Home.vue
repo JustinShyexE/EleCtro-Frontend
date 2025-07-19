@@ -33,11 +33,37 @@ onUnmounted(() => {
 </script>
 <template>
     <div ref="wrapper" class="wrapper">
-        <div :class="reached ? 'third anim-on' : 'third anim-off'">
-        </div>
         <HomeComp1 :reached />
+    </div>
+    <div class="container">
+
     </div>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+    background-color: brown;
+    width: 100%;
+    height: 140vh;
+    height: calc(third*2);
+    margin-top: 6rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    justify-self: end;
+    height: 200px;
+    width: 50px;
+    background-color: orange;
+    margin-right: 1rem;
+    margin-top: 4rem;
+    border-radius: 10px;
+    justify-self: flex-end;
+    flex-direction: column;
+    gap: 1rem;
+}
+</style>
