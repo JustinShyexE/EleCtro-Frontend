@@ -20,7 +20,6 @@ import { ref } from 'vue';
     width: 90%;
     height: 100%;
     position: relative;
-    background-color:red;
     transition: width 0.2s ease-in-out;
 }
 .search-form:hover {

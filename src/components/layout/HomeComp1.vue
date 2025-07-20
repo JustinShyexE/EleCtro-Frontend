@@ -1,31 +1,51 @@
 <script lang="ts" setup>
+import { ref } from "vue";
 import phone from "../../assets/phone.png";
-import laptop from "../assets/laptop.png";
+import laptop from "../../assets/laptop.png";
 import camera from "../../assets/camera.png";
-import headset from "../assets/headset.png";
-import tv from "../assets/TV.png";
+import headset from "../../assets/headset.png";
+import tv from "../../assets/TV.png";
+import coffee from "../../assets/appliancesimg/coffee.png";
+import washer from "../../assets/appliancesimg/washer.png";
+import microwave from "../../assets/appliancesimg/microwave.png";
+import vacuum from "../../assets/appliancesimg/vacuum.png";
+import refrigerator from "../../assets/appliancesimg/refrigerator.png";
+import airconditioner from "../../assets/appliancesimg/air-conditioner.png";
+import canonImg from "../../assets/appliancesimg/mainImg/canonImg.webp";
+import canon from "../../assets/appliancesimg/mainImg/canon.png";
+import obj from "../../data/imagePaths.ts"
 
 let props = defineProps<{
     reached: boolean;
 }>();
-
+/**If props.reached add 'container center
+       reversed' else container center '        :style="{ backgroundImage: `url(${})` }" */
+let item = ref<String>("phone")
+console.log(obj, obj["phone"])
 </script>
 <template>
-    <div :class="props.reached ? 'third anim-on' : 'third anim-off'">
-        <div :class="props.reached ? 'container center reversed':'container center'" >
+    <div :class="props.reached ? 'third anim-on' : 'third anim-off'" :style="{
+        backgroundImage: `url(${canonImg})`
+    }">
+        <div v-if="!props.reached" class='container center'>
+            <img class="image reversedImg" :src="phone" alt="phone" />
+            <img class="image reversedImg" :src="headset" alt="phone" />
+            <img class="image reversedImg" :src="tv" alt="phone" />
+            <img class="image reversedImg" :src="laptop" alt="phone" />
             <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
+        </div>
+        <div class='container center reversed' v-else>
+            <img class="image reversedImg" :src="coffee" alt="phone" />
+            <img class="image reversedImg" :src="microwave" alt="phone" />
+            <img class="image reversedImg" :src="refrigerator" alt="phone" />
+            <img class="image reversedImg" :src="vacuum" alt="phone" />
+            <img class="image reversedImg" :src="washer" alt="phone" />
+            <img class="image reversedImg" :src="airconditioner" alt="phone" />
         </div>
     </div>
     <div class="second center">
-        <div class="first"></div>
+            <div class="first" ></div>
     </div>
-
 </template>
 
 <style scoped>
@@ -36,6 +56,9 @@ let props = defineProps<{
     border-radius: 40px;
     display: flex;
     justify-content: end;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .anim-off {
@@ -72,7 +95,7 @@ let props = defineProps<{
     justify-self: end;
     max-height: 40%;
     width: calc(30px + 10%);
-    background-color: orange;
+    background-color: rgba(219, 210, 210, 1);
     margin-right: 5%;
     align-self: center;
     border-radius: 15px;
@@ -88,6 +111,7 @@ let props = defineProps<{
     transform: scaleY(-1);
     direction: rtl;
 }
+
 .reversedImg {
     margin-left: 0%;
     margin-right: 27%;
@@ -139,7 +163,7 @@ let props = defineProps<{
 }
 
 .second {
-    background-color: yellow;
+    background-color: white;
     width: 160px;
     height: 160px;
     border-radius: 50%;
@@ -149,10 +173,14 @@ let props = defineProps<{
 
 .first {
     position: absolute;
-    background-color: green;
+    background-color: rgba(63, 54, 41, 1);
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 120%;
 }
 
 @media (min-width: 400px) {
@@ -199,10 +227,11 @@ let props = defineProps<{
         width: calc(120px * 1.7);
         height: calc(120px * 1.7);
     }
- .container {
+
+    .container {
         width: calc(30px + 7%);
     }
-   
+
 }
 
 @media (min-width: 1024px) {
@@ -220,6 +249,7 @@ let props = defineProps<{
         width: calc(120px * 1.9);
         height: calc(120px * 1.9);
     }
+
     .container {
         max-height: 45%;
     }
@@ -240,9 +270,10 @@ let props = defineProps<{
         width: calc(120px * 2.1);
         height: calc(120px * 2.1);
     }
+
     .container {
         max-height: 50%;
-           width: calc(30px + 6%);
+        width: calc(30px + 6%);
     }
 }
 
@@ -261,9 +292,10 @@ let props = defineProps<{
         width: calc(120px * 2.3);
         height: calc(120px * 2.3);
     }
-      .container {
+
+    .container {
         max-height: 60%;
-         width: calc(30px + 5%);
+        width: calc(30px + 5%);
     }
 }
 </style>
