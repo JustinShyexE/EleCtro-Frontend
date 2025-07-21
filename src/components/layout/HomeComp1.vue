@@ -11,28 +11,43 @@ import microwave from "../../assets/appliancesimg/microwave.png";
 import vacuum from "../../assets/appliancesimg/vacuum.png";
 import refrigerator from "../../assets/appliancesimg/refrigerator.png";
 import airconditioner from "../../assets/appliancesimg/air-conditioner.png";
-import canonImg from "../../assets/appliancesimg/mainImg/canonImg.webp";
-import canon from "../../assets/appliancesimg/mainImg/canon.png";
-import obj from "../../data/imagePaths.ts"
-
+import airpods from "../../assets/appliancesImg/mainImg/airpods.png"
+import airpodsImg from "../../assets/appliancesImg/mainImg/appleIMg.jpg.webp"
+import canon from "../../assets/appliancesImg/mainImg/canon.png"
+import canonIMG from "../../assets/appliancesImg/mainImg/canonIMG.webp"
+import samsung from "../../assets/appliancesImg/mainImg/samsung.webp"
+import iphone from "../../assets/appliancesImg/mainImg/iphone.png"
+import iphoneImg from "../../assets/appliancesImg/mainImg/iphoneImg.png"
+import mac from "../../assets/appliancesImg/mainImg/macbook.png"
+type ImageValue = string | URL;
+type ImageMap = {
+    [key: string]: ImageValue[];
+};
+let obj: ImageMap = {
+    "camera": [canon, canonIMG],
+    "phone": [iphone, iphoneImg],
+    "airpods": [airpods, airpodsImg],
+    "tv": [samsung, samsung],
+    "laptop": [mac, mac]
+}
 let props = defineProps<{
     reached: boolean;
 }>();
 /**If props.reached add 'container center
        reversed' else container center '        :style="{ backgroundImage: `url(${})` }" */
-let item = ref<String>("phone")
+let item = ref([canonIMG, canon])
 console.log(obj, obj["phone"])
 </script>
 <template>
     <div :class="props.reached ? 'third anim-on' : 'third anim-off'" :style="{
-        backgroundImage: `url(${canonImg})`
+        backgroundImage: `url(${item[0]})`
     }">
         <div v-if="!props.reached" class='container center'>
-            <img class="image reversedImg" :src="phone" alt="phone" />
-            <img class="image reversedImg" :src="headset" alt="phone" />
-            <img class="image reversedImg" :src="tv" alt="phone" />
-            <img class="image reversedImg" :src="laptop" alt="phone" />
-            <img class="image reversedImg" :src="camera" alt="phone" />
+            <img class="image reversedImg" :src="phone" @click="item[0] = iphoneImg; item[1] = iphone" alt="phone" />
+            <img class="image reversedImg" :src="headset" @click="item[0] = airpodsImg; item[1] = airpods" alt="phone" />
+            <img class="image reversedImg" :src="tv" @click="item[0] = samsung; item[1] = samsung" alt="phone" />
+            <img class="image reversedImg" :src="laptop" @click="item[0] = mac; item[1] = mac" alt="phone" />
+            <img class="image reversedImg" :src="camera" @click="item[0] = canonIMG; item[1] = canon" alt="phone" />
         </div>
         <div class='container center reversed' v-else>
             <img class="image reversedImg" :src="coffee" alt="phone" />
@@ -44,7 +59,9 @@ console.log(obj, obj["phone"])
         </div>
     </div>
     <div class="second center">
-            <div class="first" ></div>
+        <div class="first" :style="{
+            backgroundImage: `url(${item[1]})`
+        }"></div>
     </div>
 </template>
 
@@ -180,7 +197,7 @@ console.log(obj, obj["phone"])
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 120%;
+    overflow: hidden;
 }
 
 @media (min-width: 400px) {
