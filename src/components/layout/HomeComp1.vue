@@ -1,67 +1,45 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import phone from "../../assets/phone.png";
-import laptop from "../../assets/laptop.png";
-import camera from "../../assets/camera.png";
-import headset from "../../assets/headset.png";
-import tv from "../../assets/TV.png";
-import coffee from "../../assets/appliancesimg/coffee.png";
-import washer from "../../assets/appliancesimg/washer.png";
-import microwave from "../../assets/appliancesimg/microwave.png";
-import vacuum from "../../assets/appliancesimg/vacuum.png";
-import refrigerator from "../../assets/appliancesimg/refrigerator.png";
-import airconditioner from "../../assets/appliancesimg/air-conditioner.png";
-import airpods from "../../assets/appliancesImg/mainImg/airpods.png"
-import airpodsImg from "../../assets/appliancesImg/mainImg/appleIMg.jpg.webp"
-import canon from "../../assets/appliancesImg/mainImg/canon.png"
-import canonIMG from "../../assets/appliancesImg/mainImg/canonIMG.webp"
-import samsung from "../../assets/appliancesImg/mainImg/samsung.webp"
-import iphone from "../../assets/appliancesImg/mainImg/iphone.png"
-import iphoneImg from "../../assets/appliancesImg/mainImg/iphoneImg.png"
-import mac from "../../assets/appliancesImg/mainImg/macbook.png"
-type ImageValue = string | URL;
-type ImageMap = {
-    [key: string]: ImageValue[];
-};
-let obj: ImageMap = {
-    "camera": [canon, canonIMG],
-    "phone": [iphone, iphoneImg],
-    "airpods": [airpods, airpodsImg],
-    "tv": [samsung, samsung],
-    "laptop": [mac, mac]
-}
+import image from "../../data/imagePaths.ts"
+
 let props = defineProps<{
     reached: boolean;
 }>();
-/**If props.reached add 'container center
-       reversed' else container center '        :style="{ backgroundImage: `url(${})` }" */
-let item = ref([canonIMG, canon])
-console.log(obj, obj["phone"])
+let item = ref([image.canonIMG, image.canon, '100%', '100%', 'red'])
+
+//TO ADD COLOR BACKGROUND TO THE SMALL CIRCLE CLOSE TO THE IMAGE
+
 </script>
 <template>
     <div :class="props.reached ? 'third anim-on' : 'third anim-off'" :style="{
-        backgroundImage: `url(${item[0]})`
-    }">
+        backgroundImage: `url(${item[0]})`, backgroundSize: `${item[3]}`
+    }">  <!-- item[2]-small image size;   item[3]-big image size; item[4]- small circle backgroundColor --> 
         <div v-if="!props.reached" class='container center'>
-            <img class="image reversedImg" :src="phone" @click="item[0] = iphoneImg; item[1] = iphone" alt="phone" />
-            <img class="image reversedImg" :src="headset" @click="item[0] = airpodsImg; item[1] = airpods" alt="phone" />
-            <img class="image reversedImg" :src="tv" @click="item[0] = samsung; item[1] = samsung" alt="phone" />
-            <img class="image reversedImg" :src="laptop" @click="item[0] = mac; item[1] = mac" alt="phone" />
-            <img class="image reversedImg" :src="camera" @click="item[0] = canonIMG; item[1] = canon" alt="phone" />
+            <img class="image reversedImg" :src="image.phone"
+                @click="item[0] = image.iphoneImg; item[1] = image.iphone; item[2] = '60%'; item[3] = '100%'; item[4] = 'red'" alt="device" />
+            <img class="image reversedImg" :src="image.headset"
+                @click="item[0] = image.airpodsImg; item[1] = image.airpods; item[2] = '105%'; item[3] = '100%'; item[4] = 'red'" alt="device" />
+            <img class="image reversedImg" :src="image.tv"
+                @click="item[0] = image.samsungIMG; item[1] = image.samsung; item[2] = '90%'; item[3] = '100%'; item[4] = 'red'" alt="device" />
+            <img class="image reversedImg" :src="image.laptop"
+                @click="item[0] = image.macIMG; item[1] = image.mac; item[2] = '82%'; item[3] = '100%'; item[4] = 'rgba(203, 209, 205, 1)'" alt="device" />
+            <img class="image reversedImg" :src="image.camera"
+                @click="item[0] = image.canonIMG; item[1] = image.canon; item[2] = '120%'; item[3] = '100%'; item[4] = 'red'" alt="device" />
         </div>
         <div class='container center reversed' v-else>
-            <img class="image reversedImg" :src="coffee" alt="phone" />
-            <img class="image reversedImg" :src="microwave" alt="phone" />
-            <img class="image reversedImg" :src="refrigerator" alt="phone" />
-            <img class="image reversedImg" :src="vacuum" alt="phone" />
-            <img class="image reversedImg" :src="washer" alt="phone" />
-            <img class="image reversedImg" :src="airconditioner" alt="phone" />
+            <img class="image reversedImg" :src="image.coffee" alt="phone" />
+            <img class="image reversedImg" :src="image.microwave" alt="phone" />
+            <img class="image reversedImg" :src="image.refrigerator" alt="phone" />
+            <img class="image reversedImg" :src="image.vacuum" alt="phone" />
+            <img class="image reversedImg" :src="image.washer" alt="phone" />
+            <img class="image reversedImg" :src="image.airconditioner" alt="phone" />
         </div>
     </div>
     <div class="second center">
         <div class="first" :style="{
-            backgroundImage: `url(${item[1]})`
-        }"></div>
+            backgroundImage: `url(${item[1]})`, backgroundSize: `${item[2]}`, backgroundColor: `${item[4]}`
+        }">
+        </div>
     </div>
 </template>
 
@@ -194,7 +172,7 @@ console.log(obj, obj["phone"])
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
