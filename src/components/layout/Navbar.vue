@@ -13,7 +13,7 @@ import searchbox from '../smallcomponents/searchbox.vue';
       <searchbox />
     </div>
     <div class="right">
-      <router-link to="/home" class="routerwrap">
+      <router-link to="/" class="routerwrap">
         <div class="cartIconWrap">
           <div class="quantity center">12</div>
           <img class=" cartIcon" :src="cart" />

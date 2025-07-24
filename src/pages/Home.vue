@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import HomeComp1 from '../components/layout/HomeComp1.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
+import image from "../data/imagePaths.ts"
 
 let reached = ref(false);
 const wrapper = ref<HTMLElement | null>(null);
+let select = ref()
+let a = ref([image.iphoneImg, image.iphone, '60%', 'rgba(144, 117, 85, 1)'])
+let b = [image.airpodsImg, image.iphone, '60%', 'red']
 
 const handleWindowScroll = () => {
     if (!wrapper.value) return;
-
     const rect = wrapper.value.getBoundingClientRect();
-
     const isAtTop = rect.top >= 0;
     const isAtBottom = rect.bottom <= window.innerHeight;
-
     if (isAtBottom) {
         console.log("Wrapper bottom reached viewport");
         reached.value = true;

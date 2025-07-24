@@ -12,9 +12,5 @@ import Navbar from './components/layout/Navbar.vue'
 </template>
 
 <style>
-html,
-body {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
+
 </style>
