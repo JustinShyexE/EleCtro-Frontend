@@ -28,9 +28,10 @@ import refrigeratorPic from "../assets/appliancesImg/mainImg/refrigeratorPic.jpg
 import airconditionerImg from "../assets/appliancesImg/mainImg/aircondtionerImg.jpg";
 import airconditionerPic from "../assets/appliancesImg/mainImg/airconditionerPic.jpg";
 import vacumImg from "../assets/appliancesImg/mainImg/vacumImg.jpg";
-import vacumPic from "../assets/appliancesImg/mainImg/vacumPic.jpg";
+import vacumPic from "../assets/appliancesImg/mainImg/vacumPic.webp";
 import washerImg from "../assets/appliancesImg/mainImg/washerImg.jpg";
 import washerPic from "../assets/appliancesImg/mainImg/washerPic.jpg"
+
 export default {
   laptop,
   camera,

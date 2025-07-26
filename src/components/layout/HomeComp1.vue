@@ -20,10 +20,12 @@ watch(() => props.reached, (newVal) => {
         // BOTTOM reached, keep track of the TOP last selection, if anything not seleted give the default value
         prevA = item.value
         if (prevB) item.value = prevB
-        else item.value = [image.coffeeImg, image.coffeePic, '60%', 'rgba(144, 117, 85, 1)']
+        else item.value = [image.coffeeImg, image.coffeePic, '90%', 'rgba(199, 149, 122, 1)']
     }
 })
-
+//I got a variable image. If page smaller image = imgSM imported else image = imgBG imported.
+//make the screen size variable come from app.vue
+//make 2 files paths with the same name but only the links get change to small
 </script>
 <template>
     <div :class="props.reached ? 'third anim-on' : 'third anim-off'" :style="{
@@ -43,12 +45,12 @@ watch(() => props.reached, (newVal) => {
                 @click="item[0] = image.macIMG; item[1] = image.mac; item[2] = '82%'; item[3] = 'rgba(203, 209, 205, 1)'"
                 alt="device" />
             <img class="image reversedImg" :src="image.camera"
-                @click="item[0] = image.canonIMG; item[1] = image.canon; item[2] = '120%'; item[3] = 'rgba(84, 75, 57, 1)'"
+                @click="item[0] = image.canonIMG; item[1] = image.canon; item[2] = '120%'; item[3] = 'rgba(113, 124, 84, 1)'"
                 alt="device" />
         </div>
         <div class='container center reversed' v-else>
             <img class="image reversedImg" :src="image.coffee"
-                @click="item[0] = image.coffeeImg; item[1] =image.coffeePic; item[2] = '90%'; item[3] = 'rgba(199, 149, 122, 1)'"
+                @click="item[0] = image.coffeeImg; item[1] = image.coffeePic; item[2] = '90%'; item[3] = 'rgba(199, 149, 122, 1)'"
                 alt="appliance" />
             <img class="image reversedImg" :src="image.microwave"
                 @click="item[0] = image.microwaveImg; item[1] = image.microwavePic; item[2] = '80%'; item[3] = 'rgba(128, 126, 126, 1)'"
@@ -57,7 +59,7 @@ watch(() => props.reached, (newVal) => {
                 @click="item[0] = image.refrigeratorImg; item[1] = image.refrigeratorPic; item[2] = '80%'; item[3] = 'rgba(117, 117, 119, 1)'"
                 alt="appliance" />
             <img class="image reversedImg" :src="image.vacuum"
-                @click="item[0] = image.vacumImg; item[1] = image.vacumPic; item[2] = '60%'; item[3] = 'rgba(144, 117, 85, 1)'"
+                @click="item[0] = image.vacumImg; item[1] = image.vacumPic; item[2] = '80%'; item[3] = 'rgba(227, 220, 214, 1)'"
                 alt="appliance" />
             <img class="image reversedImg" :src="image.washer"
                 @click="item[0] = image.washerImg; item[1] = image.washerPic; item[2] = '105%'; item[3] = 'rgba(234, 230, 227, 1)'"
@@ -86,11 +88,9 @@ watch(() => props.reached, (newVal) => {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: opacity 3s ease-in-out;
+    overflow:hidden ;
 }
-.third.fade-out{
-    opacity: 0;
-}
+
 
 .anim-off {
     transform-origin: bottom center;

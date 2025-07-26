@@ -1,13 +1,9 @@
 <script lang="ts" setup>
 import HomeComp1 from '../components/layout/HomeComp1.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
-import image from "../data/imagePaths.ts"
 
 let reached = ref(false);
 const wrapper = ref<HTMLElement | null>(null);
-let select = ref()
-let a = ref([image.iphoneImg, image.iphone, '60%', 'rgba(144, 117, 85, 1)'])
-let b = [image.airpodsImg, image.iphone, '60%', 'red']
 
 const handleWindowScroll = () => {
     if (!wrapper.value) return;
@@ -47,7 +43,6 @@ onUnmounted(() => {
     width: 100%;
     height: 140vh;
     height: calc(third*2);
-    margin-top: 6rem;
     display: flex;
     justify-content: center;
     position: relative;
