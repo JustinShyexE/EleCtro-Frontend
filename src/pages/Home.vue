@@ -40,6 +40,7 @@ onUnmounted(() => {
 
 <style scoped>
 .wrapper {
+    padding-top: 40px;
     width: 100%;
     height: 140vh;
     height: calc(third*2);

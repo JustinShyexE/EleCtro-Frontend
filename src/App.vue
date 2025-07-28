@@ -5,7 +5,7 @@ import Navbar from './components/layout/Navbar.vue'
 <template>
   <div>
     <Navbar />
-    <div style="margin-top: 140px;">
+    <div style="margin-top: 90px;">
       <router-view />
     </div>
   </div>
