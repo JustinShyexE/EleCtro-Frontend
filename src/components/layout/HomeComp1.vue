@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import image from "../../data/imagePaths.ts"
+import image from "../../data/imagePaths.js"
 
 let props = defineProps<{
     reached: boolean;
